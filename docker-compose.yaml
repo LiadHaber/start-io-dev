@@ -1,0 +1,21 @@
+version: "3.7"
+services: 
+  db:
+    image: mysql:latest
+    environment: 
+      - MYSQL_ROOT_PASSWORD=password
+    networks: 
+      - crypto-network
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    depends_on: 
+      - db
+    networks: 
+      - crypto-network
+    
+networks: 
+  crypto-network:
+    driver: bridge
+
